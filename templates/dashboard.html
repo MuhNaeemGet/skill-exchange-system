@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard — SkillPortal{% endblock %}
+
+{% block content %}
+<section class="page-hero mini">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="avatar-lg">
+        {% if student.profile_pic and student.profile_pic != 'default.png' %}
+          <img src="{{ url_for('static', filename='uploads/' + student.profile_pic) }}" alt="Avatar" />
+        {% else %}
+          <div class="avatar-placeholder lg">{{ student.full_name[0] }}</div>
+        {% endif %}
+      </div>
+      <div>
+        <h1>Hello, {{ student.full_name.split()[0] }} 👋</h1>
+        <p>Here's what's happening on your SkillPortal</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container dashboard-grid">
+
+  <!-- Quick Actions -->
+  <div class="dash-section">
+    <h2 class="section-title">Quick Actions</h2>
+    <div class="quick-actions">
+      <a href="{{ url_for('teachers') }}" class="qa-card">
+        <span class="qa-icon">🔍</span>
+        <span>Browse Teachers</span>
+      </a>
+      <a href="{{ url_for('messages') }}" class="qa-card">
+        <span class="qa-icon">💬</span>
+        <span>Messages</span>
+      </a>
+      <a href="{{ url_for('profile') }}" class="qa-card">
+        <span class="qa-icon">⚙️</span>
+        <span>Edit Profile</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- My Sessions -->
+  <div class="dash-section">
+    <h2 class="section-title">My Sessions</h2>
+    {% if my_sessions %}
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Teacher</th>
+              <th>Skill</th>
+              <th>Scheduled</th>
+              <th>Duration</th>
+              <th>Status</th>
+              <th>Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in my_sessions %}
+            <tr>
+              <td>{{ s.teacher_name }}</td>
+              <td>{{ s.skill }}</td>
+              <td>{{ s.scheduled_at }}</td>
+              <td>{{ s.duration }} min</td>
+              <td><span class="badge badge-{{ s.status }}">{{ s.status }}</span></td>
+              <td>
+                {% if s.status == 'completed' %}
+                  <a href="{{ url_for('rate_teacher', teacher_id=s.teacher_id) }}" class="btn btn-sm btn-outline">★ Rate</a>
+                {% else %}—{% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <span class="empty-icon">📅</span>
+        <p>No sessions yet. <a href="{{ url_for('teachers') }}">Book your first one!</a></p>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Recent Messages -->
+  <div class="dash-section">
+    <h2 class="section-title">Recent Messages</h2>
+    {% if messages %}
+      <ul class="msg-list">
+        {% for m in messages %}
+          <li class="msg-item">
+            <span class="msg-from">{{ m.sender }}</span>
+            <span class="msg-body">{{ m.message[:60] }}{% if m.message|length > 60 %}…{% endif %}</span>
+            <span class="msg-time">{{ m.created_at }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+      <a href="{{ url_for('messages') }}" class="btn btn-outline btn-sm">View All →</a>
+    {% else %}
+      <div class="empty-state">
+        <span class="empty-icon">📭</span>
+        <p>No messages yet.</p>
+      </div>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

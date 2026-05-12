@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block title %}Rate Teacher — SkillPortal{% endblock %}
+
+{% block content %}
+<section class="page-hero mini">
+  <div class="container">
+    <h1>Rate Your Experience</h1>
+    <p>Share feedback for {{ teacher.full_name }}</p>
+  </div>
+</section>
+
+<div class="container rating-layout">
+
+  <div class="rating-card">
+    <div class="rate-teacher-info">
+      <div class="avatar-placeholder lg">{{ teacher.full_name[0] }}</div>
+      <div>
+        <h3>{{ teacher.full_name }}</h3>
+        <p>{{ teacher.bio[:80] }}…</p>
+      </div>
+    </div>
+
+    <form method="POST" action="{{ url_for('rate_teacher', teacher_id=teacher.id) }}" class="auth-form">
+
+      <div class="form-group">
+        <label>Your Rating</label>
+        <div class="star-selector" id="starSelector">
+          {% for i in [1,2,3,4,5] %}
+            <span class="star-pick {{ 'selected' if existing and existing.stars >= i }}"
+                  data-val="{{ i }}">★</span>
+          {% endfor %}
+        </div>
+        <input type="hidden" name="stars" id="starsInput"
+               value="{{ existing.stars if existing else '' }}" required />
+      </div>
+
+      <div class="form-group">
+        <label for="comment">Comment <span class="optional">(optional)</span></label>
+        <textarea id="comment" name="comment" rows="4"
+                  placeholder="Share what you learned and how the session went…">{{ existing.comment if existing else '' }}</textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+          {{ 'Update Rating' if existing else 'Submit Rating' }}
+        </button>
+        <a href="{{ url_for('teachers') }}" class="btn btn-outline">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<script>
+const stars  = document.querySelectorAll('.star-pick');
+const hidden = document.getElementById('starsInput');
+
+stars.forEach(star => {
+  star.addEventListener('mouseover', () => highlight(star.dataset.val));
+  star.addEventListener('mouseout',  () => highlight(hidden.value || 0));
+  star.addEventListener('click', () => {
+    hidden.value = star.dataset.val;
+    highlight(star.dataset.val);
+  });
+});
+
+function highlight(val) {
+  stars.forEach(s => {
+    s.classList.toggle('selected', parseInt(s.dataset.val) <= parseInt(val));
+  });
+}
+</script>
+{% endblock %}

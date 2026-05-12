@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% block title %}Book Session — SkillPortal{% endblock %}
+
+{% block content %}
+<section class="page-hero mini">
+  <div class="container">
+    <h1>Book a Session</h1>
+    <p>Schedule your live learning session with {{ teacher.full_name }}</p>
+  </div>
+</section>
+
+<div class="container booking-layout">
+
+  <!-- Teacher Info Panel -->
+  <div class="booking-sidebar">
+    <div class="teacher-card static">
+      <div class="tc-avatar">
+        {% if teacher.profile_pic and teacher.profile_pic != 'default.png' %}
+          <img src="{{ url_for('static', filename='uploads/' + teacher.profile_pic) }}" alt="{{ teacher.full_name }}" />
+        {% else %}
+          <div class="avatar-placeholder lg">{{ teacher.full_name[0] }}</div>
+        {% endif %}
+      </div>
+      <h3>{{ teacher.full_name }}</h3>
+      <div class="tc-rating">
+        {% set r = avg_rating(teacher.id) %}
+        {% for i in range(5) %}
+          <span class="{{ 'star-on' if i < r|int else 'star-off' }}">★</span>
+        {% endfor %}
+        <span class="rating-val">{{ r }}</span>
+      </div>
+      <p class="tc-bio">{{ teacher.bio }}</p>
+      <div class="info-pills">
+        <span>{{ teacher.experience }} yrs experience</span>
+        <span>${{ "%.2f"|format(teacher.hourly_rate) }} / hr</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Form -->
+  <div class="booking-form-wrap">
+    <div class="form-card">
+      <h2>Session Details</h2>
+      <form method="POST" action="{{ url_for('book_session', teacher_id=teacher.id) }}" class="auth-form">
+
+        <div class="form-group">
+          <label for="skill">Select Skill</label>
+          <select id="skill" name="skill" required>
+            <option value="" disabled selected>Choose a skill…</option>
+            {% for s in teacher_skills %}
+              <option value="{{ s }}">{{ s }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="scheduled_at">Date & Time</label>
+          <input type="datetime-local" id="scheduled_at" name="scheduled_at" required />
+        </div>
+
+        <div class="form-group">
+          <label for="duration">Duration</label>
+          <select id="duration" name="duration">
+            <option value="30">30 minutes</option>
+            <option value="60" selected>1 hour</option>
+            <option value="90">1.5 hours</option>
+            <option value="120">2 hours</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message to Teacher <span class="optional">(optional)</span></label>
+          <textarea id="message" name="message" rows="4"
+                    placeholder="Describe your learning goal or any specific topics…"></textarea>
+        </div>
+
+        <div class="booking-summary" id="bookingSummary">
+          <h4>Booking Summary</h4>
+          <div class="summary-line"><span>Teacher</span><strong>{{ teacher.full_name }}</strong></div>
+          <div class="summary-line"><span>Rate</span><strong>${{ "%.2f"|format(teacher.hourly_rate) }}/hr</strong></div>
+          <div class="summary-line" id="totalLine"><span>Estimated Cost</span><strong>—</strong></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const ratePerHour = {{ teacher.hourly_rate }};
+const durationSel = document.getElementById('duration');
+const totalLine   = document.getElementById('totalLine').querySelector('strong');
+
+function updateTotal() {
+  const mins = parseInt(durationSel.value);
+  const cost = (mins / 60 * ratePerHour).toFixed(2);
+  totalLine.textContent = '$' + cost;
+}
+durationSel.addEventListener('change', updateTotal);
+updateTotal();
+</script>
+{% endblock %}
