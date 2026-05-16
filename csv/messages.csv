@@ -1,0 +1,81 @@
+id,sender,receiver,message,created_at
+1,teacher_6,student_37,"The session was very helpful, thanks.",2024-11-10 00:00:00
+2,teacher_41,student_17,"The session was very helpful, thanks.",2024-09-24 00:00:00
+3,teacher_42,student_65,I am having trouble with this topic.,2024-10-10 00:00:00
+4,student_22,teacher_43,I am having trouble with this topic.,2024-11-26 00:00:00
+5,student_73,teacher_3,Can we reschedule our session?,2024-09-21 00:00:00
+6,student_6,teacher_42,Please send me the notes from today.,2025-02-14 00:00:00
+7,student_27,teacher_50,I am having trouble with this topic.,2025-02-11 00:00:00
+8,student_4,teacher_32,"The session was very helpful, thanks.",2024-11-14 00:00:00
+9,teacher_31,student_39,I completed the task you assigned.,2024-11-16 00:00:00
+10,student_59,teacher_5,I have a question about the assignment.,2024-12-22 00:00:00
+11,teacher_31,student_54,Is Thursday at 3pm available?,2025-02-03 00:00:00
+12,student_19,teacher_21,Is Thursday at 3pm available?,2025-03-07 00:00:00
+13,teacher_26,student_45,Is Thursday at 3pm available?,2025-01-10 00:00:00
+14,teacher_7,student_72,Can you recommend any resources?,2024-10-02 00:00:00
+15,teacher_29,student_35,Thank you for the session today!,2024-09-13 00:00:00
+16,student_38,teacher_25,I completed the task you assigned.,2024-11-03 00:00:00
+17,student_21,teacher_21,Is Thursday at 3pm available?,2024-10-19 00:00:00
+18,student_21,teacher_32,Can you recommend any resources?,2025-01-06 00:00:00
+19,teacher_32,student_40,I completed the task you assigned.,2025-01-08 00:00:00
+20,teacher_16,student_59,Is Thursday at 3pm available?,2024-09-13 00:00:00
+21,teacher_19,student_7,Can you recommend any resources?,2024-11-13 00:00:00
+22,student_69,teacher_1,I completed the task you assigned.,2024-10-05 00:00:00
+23,teacher_47,student_34,I completed the task you assigned.,2024-12-03 00:00:00
+24,teacher_26,student_6,"The session was very helpful, thanks.",2024-10-20 00:00:00
+25,teacher_36,student_47,I completed the task you assigned.,2025-01-08 00:00:00
+26,student_58,teacher_49,I am having trouble with this topic.,2025-02-22 00:00:00
+27,student_16,teacher_9,I completed the task you assigned.,2024-12-05 00:00:00
+28,student_44,teacher_36,I have a question about the assignment.,2024-10-21 00:00:00
+29,student_66,teacher_26,Can we reschedule our session?,2024-09-10 00:00:00
+30,teacher_46,student_18,Can you recommend any resources?,2025-01-11 00:00:00
+31,student_59,teacher_10,"The session was very helpful, thanks.",2024-10-06 00:00:00
+32,teacher_40,student_42,I completed the task you assigned.,2025-02-05 00:00:00
+33,teacher_38,student_39,"The session was very helpful, thanks.",2025-01-15 00:00:00
+34,student_63,teacher_46,Can you recommend any resources?,2024-09-05 00:00:00
+35,student_48,teacher_22,I completed the task you assigned.,2025-01-28 00:00:00
+36,student_40,teacher_47,Can we reschedule our session?,2025-01-31 00:00:00
+37,student_61,teacher_17,I am having trouble with this topic.,2025-01-26 00:00:00
+38,teacher_47,student_30,Can you recommend any resources?,2024-10-14 00:00:00
+39,student_68,teacher_41,I completed the task you assigned.,2024-10-08 00:00:00
+40,student_32,teacher_3,Thank you for the session today!,2024-10-19 00:00:00
+41,teacher_29,student_3,I have a question about the assignment.,2024-12-15 00:00:00
+42,student_27,teacher_27,I am having trouble with this topic.,2024-12-30 00:00:00
+43,teacher_46,student_8,Looking forward to our next meeting.,2025-01-22 00:00:00
+44,teacher_43,student_42,I completed the task you assigned.,2024-11-20 00:00:00
+45,student_23,teacher_30,Is Thursday at 3pm available?,2025-01-18 00:00:00
+46,student_46,teacher_44,Please send me the notes from today.,2025-02-04 00:00:00
+47,student_62,teacher_13,Please send me the notes from today.,2025-01-21 00:00:00
+48,student_39,teacher_15,Please send me the notes from today.,2025-03-17 00:00:00
+49,teacher_46,student_37,Can you recommend any resources?,2024-11-21 00:00:00
+50,student_62,teacher_23,Please send me the notes from today.,2024-11-13 00:00:00
+51,student_16,teacher_37,I completed the task you assigned.,2024-12-11 00:00:00
+52,student_45,teacher_50,Please send me the notes from today.,2024-09-11 00:00:00
+53,teacher_46,student_37,Can you recommend any resources?,2025-02-15 00:00:00
+54,teacher_48,student_33,Looking forward to our next meeting.,2025-01-16 00:00:00
+55,student_35,teacher_36,I have a question about the assignment.,2024-09-28 00:00:00
+56,teacher_16,student_31,"The session was very helpful, thanks.",2024-10-28 00:00:00
+57,teacher_4,student_30,Is Thursday at 3pm available?,2025-03-03 00:00:00
+58,student_61,teacher_7,I have a question about the assignment.,2024-09-02 00:00:00
+59,teacher_11,student_71,Can you recommend any resources?,2025-01-01 00:00:00
+60,student_26,teacher_49,Is Thursday at 3pm available?,2024-11-13 00:00:00
+61,teacher_50,student_8,I am having trouble with this topic.,2024-10-30 00:00:00
+62,student_69,teacher_48,Can we reschedule our session?,2024-10-15 00:00:00
+63,student_54,teacher_12,Can we reschedule our session?,2024-12-11 00:00:00
+64,student_64,teacher_12,Please send me the notes from today.,2024-09-10 00:00:00
+65,student_2,teacher_20,Thank you for the session today!,2024-11-25 00:00:00
+66,student_37,teacher_30,"The session was very helpful, thanks.",2025-01-13 00:00:00
+67,student_64,teacher_9,Can you recommend any resources?,2024-11-09 00:00:00
+68,teacher_8,student_25,Can you recommend any resources?,2025-02-13 00:00:00
+69,teacher_46,student_33,Is Thursday at 3pm available?,2024-11-15 00:00:00
+70,student_73,teacher_44,I have a question about the assignment.,2025-02-04 00:00:00
+71,student_52,teacher_28,Thank you for the session today!,2024-12-12 00:00:00
+72,student_13,teacher_12,Can you recommend any resources?,2024-11-22 00:00:00
+73,teacher_1,student_32,Looking forward to our next meeting.,2024-12-24 00:00:00
+74,teacher_22,student_35,I am having trouble with this topic.,2024-09-03 00:00:00
+75,teacher_42,student_34,Looking forward to our next meeting.,2024-09-16 00:00:00
+76,teacher_30,student_16,I completed the task you assigned.,2025-02-23 00:00:00
+77,student_65,teacher_46,Thank you for the session today!,2025-02-11 00:00:00
+78,student_38,teacher_24,Looking forward to our next meeting.,2024-10-05 00:00:00
+79,teacher_10,student_62,I am having trouble with this topic.,2024-12-05 00:00:00
+80,student_54,teacher_45,Can you recommend any resources?,2025-03-13 00:00:00

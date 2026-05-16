@@ -1,0 +1,61 @@
+id,teacher_id,student_id,stars,comment,created_at
+1,27,4,1,"Session was okay, nothing special.",2025-01-07 00:00:00
+2,16,48,4,Explained clearly and patiently.,2024-12-05 00:00:00
+3,2,29,3,Explained clearly and patiently.,2025-03-02 00:00:00
+4,10,43,2,"Great session, very helpful!",2024-11-13 00:00:00
+5,45,61,2,Loved the hands-on approach.,2024-12-24 00:00:00
+6,6,1,1,Good but needs more examples.,2024-10-26 00:00:00
+7,36,20,5,,2024-12-18 00:00:00
+8,50,15,3,"Excellent teacher, highly recommend.",2024-11-17 00:00:00
+9,4,16,2,"Session was okay, nothing special.",2025-02-11 00:00:00
+10,5,59,1,Loved the hands-on approach.,2025-01-31 00:00:00
+11,2,69,5,,2024-11-01 00:00:00
+12,19,19,4,"Great session, very helpful!",2025-02-05 00:00:00
+13,16,46,5,"Session was okay, nothing special.",2024-10-18 00:00:00
+14,34,11,3,Explained clearly and patiently.,2025-01-13 00:00:00
+15,33,70,5,,2024-09-06 00:00:00
+16,31,50,1,"Session was okay, nothing special.",2024-12-05 00:00:00
+17,48,33,1,Very knowledgeable and professional.,2024-09-18 00:00:00
+18,16,45,1,,2025-03-08 00:00:00
+19,9,43,1,Very knowledgeable and professional.,2025-01-18 00:00:00
+20,42,44,2,Loved the hands-on approach.,2025-02-26 00:00:00
+21,41,62,2,Could improve on time management.,2024-09-17 00:00:00
+22,3,59,3,"Excellent teacher, highly recommend.",2024-09-12 00:00:00
+23,3,26,3,Good but needs more examples.,2025-01-10 00:00:00
+24,35,51,4,Good but needs more examples.,2024-09-10 00:00:00
+25,19,25,3,"Great session, very helpful!",2025-02-15 00:00:00
+26,18,43,1,Very knowledgeable and professional.,2024-12-21 00:00:00
+27,48,52,4,"Session was okay, nothing special.",2024-11-26 00:00:00
+28,32,24,4,Very knowledgeable and professional.,2025-01-11 00:00:00
+29,6,35,4,Explained clearly and patiently.,2024-12-20 00:00:00
+30,35,24,3,Very knowledgeable and professional.,2024-09-27 00:00:00
+31,21,11,3,Good but needs more examples.,2024-12-24 00:00:00
+32,11,55,4,Very knowledgeable and professional.,2024-12-24 00:00:00
+33,47,6,3,,2024-12-21 00:00:00
+34,41,36,1,Explained clearly and patiently.,2025-02-19 00:00:00
+35,24,52,5,Could improve on time management.,2024-09-08 00:00:00
+36,39,19,4,"Great session, very helpful!",2024-10-03 00:00:00
+37,16,9,3,Very knowledgeable and professional.,2024-12-08 00:00:00
+38,3,73,5,Could improve on time management.,2025-02-21 00:00:00
+39,24,58,3,Loved the hands-on approach.,2025-03-15 00:00:00
+40,37,10,2,,2024-12-03 00:00:00
+41,21,51,3,"Excellent teacher, highly recommend.",2024-09-30 00:00:00
+42,48,4,2,Loved the hands-on approach.,2025-01-11 00:00:00
+43,36,50,1,Good but needs more examples.,2025-03-18 00:00:00
+44,46,34,4,"Excellent teacher, highly recommend.",2025-02-04 00:00:00
+45,45,37,4,"Excellent teacher, highly recommend.",2024-10-02 00:00:00
+46,5,18,4,Could improve on time management.,2025-03-02 00:00:00
+47,6,57,3,Very knowledgeable and professional.,2025-03-01 00:00:00
+48,36,9,5,Good but needs more examples.,2024-11-16 00:00:00
+49,46,21,2,Very knowledgeable and professional.,2025-01-09 00:00:00
+50,8,29,2,Could improve on time management.,2024-10-31 00:00:00
+51,2,64,3,,2025-01-25 00:00:00
+52,30,48,5,Could improve on time management.,2025-02-04 00:00:00
+53,5,12,3,"Session was okay, nothing special.",2025-03-03 00:00:00
+54,34,62,4,"Session was okay, nothing special.",2025-01-26 00:00:00
+55,9,10,3,Explained clearly and patiently.,2024-12-25 00:00:00
+56,44,60,5,Very knowledgeable and professional.,2024-10-03 00:00:00
+57,41,71,5,Could improve on time management.,2025-03-16 00:00:00
+58,28,17,5,"Great session, very helpful!",2024-10-02 00:00:00
+59,10,67,3,Could improve on time management.,2024-10-12 00:00:00
+60,46,42,2,Very knowledgeable and professional.,2025-01-11 00:00:00
