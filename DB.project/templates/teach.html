@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sessions — SkillSwap</title>
+<link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<nav class="navbar" id="navbar"></nav>
+<div id="toast-wrap"></div>
+
+<div class="wrap page-body">
+  <div class="ph"><div><h1>Sessions</h1><p>All your scheduled and completed skill exchange sessions</p></div></div>
+
+  <div class="tabs">
+    <button class="tab on" id="t-up"   onclick="switchTab('up')">📅 Upcoming</button>
+    <button class="tab"    id="t-done" onclick="switchTab('done')">✅ Completed</button>
+  </div>
+
+  <div id="panel-up"></div>
+  <div id="panel-done" style="display:none"></div>
+</div>
+
+<!-- Review Modal -->
+<div id="rev-modal" class="overlay" style="display:none">
+  <div class="modal">
+    <div class="modal-hdr"><h3>Leave a review</h3><button class="modal-x" onclick="closeRev()">✕</button></div>
+    <input type="hidden" id="rv-sid">
+    <input type="hidden" id="rv-rid">
+    <input type="hidden" id="rv-rating" value="0">
+    <div class="fg">
+      <label>Your rating</label>
+      <div class="star-row" id="star-row">
+        <button onclick="setStar(1)">★</button>
+        <button onclick="setStar(2)">★</button>
+        <button onclick="setStar(3)">★</button>
+        <button onclick="setStar(4)">★</button>
+        <button onclick="setStar(5)">★</button>
+      </div>
+    </div>
+    <div class="fg">
+      <label>Comment <span style="color:var(--ink-4);font-weight:400;font-size:12px">(optional)</span></label>
+      <textarea id="rv-comment" placeholder="Share your experience with this skill exchange…"></textarea>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeRev()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitRev()">Submit review →</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script>
+requireAuth();
+renderNav('teach');
+const user = getUser();
+
+function switchTab(t) {
+  document.getElementById('panel-up').style.display   = t==='up'  ?'block':'none';
+  document.getElementById('panel-done').style.display = t==='done'?'block':'none';
+  document.getElementById('t-up').className   = 'tab'+(t==='up'  ?' on':'');
+  document.getElementById('t-done').className = 'tab'+(t==='done'?' on':'');
+}
+
+function renderSessions(list, elId) {
+  const el = document.getElementById(elId);
+  if (!list.length) {
+    el.innerHTML = `<div class="empty"><span class="empty-ico">📅</span><p>No sessions here yet.</p></div>`;
+    return;
+  }
+  el.innerHTML = list.map(s=>`
+    <div class="item">
+      <div class="item-l">
+        <div class="item-title">${escHtml(s.skill_offered)} ↔ ${escHtml(s.skill_wanted)}</div>
+        <div class="item-sub">
+          ${escHtml(s.requester_id===user.user_id?'Learning from '+s.provider_name:'Teaching '+s.requester_name)}
+        </div>
+        <div class="item-meta">
+          ${statusBadge(s.status)}
+          <span style="font-size:12px;color:var(--ink-4)">📅 ${fmtDate(s.scheduled_at)}</span>
+          <span style="font-size:12px;color:var(--ink-4)">⏱ ${s.duration_mins} min</span>
+          <span style="font-size:12px;color:var(--ink-4)">📍 ${s.mode}</span>
+          ${s.status==='completed'&&s.credits_transferred?`<span class="badge badge-green">💰 ${s.credits_transferred} credits</span>`:''}
+        </div>
+      </div>
+      <div class="item-r">
+        ${s.status==='scheduled'?`
+          <button class="btn btn-success btn-sm" onclick="complete(${s.session_id})">✓ Mark complete</button>
+          <button class="btn btn-outline btn-sm" onclick="openRev(${s.session_id},${s.requester_id===user.user_id?s.provider_id:s.requester_id})">⭐ Review</button>`:''}
+        ${s.status==='completed'?`
+          <button class="btn btn-outline btn-sm" onclick="openRev(${s.session_id},${s.requester_id===user.user_id?s.provider_id:s.requester_id})">⭐ Leave review</button>`:''}
+      </div>
+    </div>`).join('');
+}
+
+async function load() {
+  const d = await api('GET','/api/sessions');
+  const a = d.sessions||[];
+  renderSessions(a.filter(s=>s.status==='scheduled'), 'panel-up');
+  renderSessions(a.filter(s=>s.status==='completed'), 'panel-done');
+}
+
+async function complete(sid) {
+  const d = await api('PUT',`/api/sessions/${sid}/complete`);
+  if (d.error) { toast(d.error,'err'); return; }
+  toast(`Session complete! ${d.credits_transferred} credits transferred. 🎉`,'ok'); load();
+}
+
+function openRev(sid, rid) {
+  document.getElementById('rv-sid').value    = sid;
+  document.getElementById('rv-rid').value    = rid;
+  document.getElementById('rv-rating').value = 0;
+  document.getElementById('rv-comment').value= '';
+  document.querySelectorAll('#star-row button').forEach(b=>b.style.color='var(--ink-5)');
+  document.getElementById('rev-modal').style.display = 'flex';
+}
+function closeRev() { document.getElementById('rev-modal').style.display = 'none'; }
+
+function setStar(n) {
+  document.getElementById('rv-rating').value = n;
+  document.querySelectorAll('#star-row button').forEach((b,i)=>{ b.style.color = i<n?'var(--amber)':'var(--ink-5)'; });
+}
+
+async function submitRev() {
+  const rating = parseInt(document.getElementById('rv-rating').value);
+  if (!rating) { toast('Please select a star rating','err'); return; }
+  const d = await api('POST','/api/reviews',{
+    session_id:  parseInt(document.getElementById('rv-sid').value),
+    reviewee_id: parseInt(document.getElementById('rv-rid').value),
+    rating,
+    comment: document.getElementById('rv-comment').value
+  });
+  if (d.error) { toast(d.error,'err'); return; }
+  toast('Review submitted! ⭐','ok'); closeRev(); load();
+}
+
+document.getElementById('rev-modal').addEventListener('click', e => { if (e.target===e.currentTarget) closeRev(); });
+load();
+</script>
+</body>
+</html>

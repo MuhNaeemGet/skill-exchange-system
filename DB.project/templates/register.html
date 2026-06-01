@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Register — SkillSwap</title>
+<link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<nav class="navbar" id="navbar"></nav>
+
+<div class="auth-page page-body">
+  <div class="auth-box">
+    <div class="auth-logo">
+      <div class="auth-logo-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M7 12 Q16 7 25 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M25 12 L20 8 L21 14" fill="#fff"/>
+          <path d="M25 20 Q16 25 7 20" stroke="rgba(255,255,255,.7)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M7 20 L12 24 L11 18" fill="rgba(255,255,255,.7)"/>
+          <circle cx="16" cy="16" r="2" fill="rgba(255,255,255,.5)"/>
+        </svg>
+      </div>
+      <span class="auth-logo-name">Skill<span>Swap</span></span>
+    </div>
+    <h2>Create your account</h2>
+    <p class="auth-sub">Join and start exchanging skills today — it's completely free</p>
+    <div id="alert-box"></div>
+    <div class="fg">
+      <label>Username</label>
+      <input type="text" id="username" placeholder="Choose a username" autofocus>
+    </div>
+    <div class="fg">
+      <label>Email address</label>
+      <input type="email" id="email" placeholder="you@example.com">
+    </div>
+    <div class="fg">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Min 6 characters">
+      <div class="fg-hint">Use at least 6 characters</div>
+    </div>
+    <button class="btn btn-primary btn-w" onclick="doRegister()">Create account →</button>
+    <p class="auth-switch">Already have an account? <a href="login.html">Sign in</a></p>
+  </div>
+</div>
+
+<script src="/static/js/shared.js"></script>
+<script>
+renderNav('register');
+if (getToken()) location.href = 'dashboard.html';
+
+document.getElementById('password').addEventListener('keydown', e => { if (e.key==='Enter') doRegister(); });
+
+async function doRegister() {
+  const username = document.getElementById('username').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const ab       = document.getElementById('alert-box');
+  ab.innerHTML   = '';
+
+  if (!username || !email || !password) {
+    ab.innerHTML = '<div class="alert alert-error">Please fill in all fields.</div>'; return;
+  }
+  if (password.length < 6) {
+    ab.innerHTML = '<div class="alert alert-error">Password must be at least 6 characters.</div>'; return;
+  }
+  const btn = document.querySelector('.btn-primary');
+  btn.textContent = 'Creating…'; btn.disabled = true;
+
+  const d = await api('POST', '/api/auth/register', { username, email, password });
+  btn.textContent = 'Create account →'; btn.disabled = false;
+
+  if (d.error) { ab.innerHTML = `<div class="alert alert-error">${escHtml(d.error)}</div>`; return; }
+  saveLogin(d.token, d.user);
+  toast('Welcome to SkillSwap! 🎉', 'ok');
+  location.href = 'dashboard.html';
+}
+</script>
+</body>
+</html>

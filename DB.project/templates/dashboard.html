@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard — SkillSwap</title>
+<link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<nav class="navbar" id="navbar"></nav>
+<div id="toast-wrap"></div>
+
+<div class="wrap page-body">
+  <div class="ph">
+    <div><h1 id="greeting">Dashboard</h1><p id="greet-sub">Your skill exchange overview</p></div>
+    <a href="skills.html" class="btn btn-primary btn-sm">Find skills →</a>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-val" id="s-credits">—</div><div class="stat-lbl">Credits</div></div>
+    <div class="stat-card"><div class="stat-icon">📨</div><div class="stat-val" id="s-pending">—</div><div class="stat-lbl">Pending requests</div></div>
+    <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-val" id="s-sessions">—</div><div class="stat-lbl">Upcoming sessions</div></div>
+    <div class="stat-card"><div class="stat-icon">⭐</div><div class="stat-val" id="s-rating">—</div><div class="stat-lbl">Your rating</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <p class="st">Recent requests</p>
+      <div id="dash-reqs"><div style="color:var(--ink-4);font-size:14px;padding:.5rem 0">Loading…</div></div>
+      <a href="request.html" style="font-size:13px;color:var(--brand);display:inline-block;margin-top:.75rem;font-weight:500">View all requests →</a>
+    </div>
+    <div>
+      <p class="st">Upcoming sessions</p>
+      <div id="dash-sess"><div style="color:var(--ink-4);font-size:14px;padding:.5rem 0">Loading…</div></div>
+      <a href="teach.html" style="font-size:13px;color:var(--brand);display:inline-block;margin-top:.75rem;font-weight:500">View all sessions →</a>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem">
+    <p class="st">My skills at a glance</p>
+    <div class="card">
+      <div class="grid-2">
+        <div>
+          <p style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:.6rem;letter-spacing:.05em">OFFERING</p>
+          <div id="my-offers"><span style="color:var(--ink-4);font-size:13px">Loading…</span></div>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:700;color:var(--brand);margin-bottom:.6rem;letter-spacing:.05em">WANT TO LEARN</p>
+          <div id="my-wants"><span style="color:var(--ink-4);font-size:13px">Loading…</span></div>
+        </div>
+      </div>
+      <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;gap:.75rem">
+        <a href="profile.html" class="btn btn-secondary btn-sm">Edit skills</a>
+        <a href="users.html"   class="btn btn-outline btn-sm">Find matches</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script>
+requireAuth();
+renderNav('dashboard');
+const user = getUser();
+
+document.getElementById('greeting').textContent = `Welcome back, ${user.username} 👋`;
+document.getElementById('greet-sub').textContent = `Here's what's happening with your skill exchanges`;
+
+async function load() {
+  const [rd, sd, wd, pd] = await Promise.all([
+    api('GET','/api/requests'),
+    api('GET','/api/sessions'),
+    api('GET','/api/wallet'),
+    api('GET',`/api/users/${user.user_id}`)
+  ]);
+
+  const reqs = rd.requests || [];
+  const sess = sd.sessions  || [];
+
+  document.getElementById('s-credits').textContent  = wd.balance ?? 0;
+  document.getElementById('s-pending').textContent  = reqs.filter(r=>r.status==='pending').length;
+  document.getElementById('s-sessions').textContent = sess.filter(s=>s.status==='scheduled').length;
+  document.getElementById('s-rating').textContent   = user.avg_rating ? user.avg_rating.toFixed(1) : '—';
+
+  // Requests
+  const rEl = document.getElementById('dash-reqs');
+  const rec  = reqs.slice(0,5);
+  rEl.innerHTML = rec.length ? rec.map(r => `
+    <div class="item">
+      <div class="item-l">
+        <div class="item-title">${escHtml(r.requester_name)} → ${escHtml(r.provider_name)}</div>
+        <div class="item-sub">
+          <span class="badge badge-green" style="margin-right:.3rem">${escHtml(r.skill_offered)}</span>
+          <span style="color:var(--ink-4)">↔</span>
+          <span class="badge badge-brand" style="margin-left:.3rem">${escHtml(r.skill_wanted)}</span>
+        </div>
+        <div class="item-meta">${statusBadge(r.status)} <span style="font-size:11px;color:var(--ink-4)">${fmtDateShort(r.created_at)}</span></div>
+      </div>
+      <div class="item-r">
+        ${r.status==='pending'&&r.provider_id===user.user_id?`
+          <button class="btn btn-success btn-sm" onclick="respond(${r.request_id},'accepted')">Accept</button>
+          <button class="btn btn-danger  btn-sm" onclick="respond(${r.request_id},'rejected')">Reject</button>`:''}
+      </div>
+    </div>`).join('')
+  : `<div class="empty"><span class="empty-ico">📭</span><p>No requests yet.<br><a href="skills.html">Browse skills</a> to send one.</p></div>`;
+
+  // Sessions
+  const sEl = document.getElementById('dash-sess');
+  const up  = sess.filter(s=>s.status==='scheduled').slice(0,4);
+  sEl.innerHTML = up.length ? up.map(s=>`
+    <div class="item">
+      <div class="item-l">
+        <div class="item-title">${escHtml(s.skill_offered)} ↔ ${escHtml(s.skill_wanted)}</div>
+        <div class="item-sub">With ${escHtml(s.requester_id===user.user_id?s.provider_name:s.requester_name)}</div>
+        <div class="item-meta">${statusBadge(s.status)} <span style="font-size:11px;color:var(--ink-4)">📅 ${fmtDate(s.scheduled_at)} · ${s.duration_mins}min · ${s.mode}</span></div>
+      </div>
+      <div class="item-r">
+        <button class="btn btn-success btn-sm" onclick="complete(${s.session_id})">Mark complete</button>
+      </div>
+    </div>`).join('')
+  : `<div class="empty"><span class="empty-ico">📅</span><p>No upcoming sessions.</p></div>`;
+
+  // My skills
+  const skills  = pd.skills || [];
+  const offered = skills.filter(s=>s.type==='offer');
+  const wanted  = skills.filter(s=>s.type==='want');
+  document.getElementById('my-offers').innerHTML = offered.length
+    ? offered.map(s=>`<span class="badge badge-green skill-tag" style="margin:.2rem">${escHtml(s.name)} <small style="opacity:.7">${s.level}</small></span>`).join('')
+    : '<span style="font-size:13px;color:var(--ink-4)">None added. <a href="profile.html">Add skills</a></span>';
+  document.getElementById('my-wants').innerHTML = wanted.length
+    ? wanted.map(s=>`<span class="badge badge-brand skill-tag" style="margin:.2rem">${escHtml(s.name)}</span>`).join('')
+    : '<span style="font-size:13px;color:var(--ink-4)">None added. <a href="profile.html">Add skills</a></span>';
+}
+
+async function respond(rid, status) {
+  const d = await api('PUT',`/api/requests/${rid}`,{status});
+  if (d.error) { toast(d.error,'err'); return; }
+  toast(`Request ${status}!`,'ok'); load();
+}
+async function complete(sid) {
+  const d = await api('PUT',`/api/sessions/${sid}/complete`);
+  if (d.error) { toast(d.error,'err'); return; }
+  toast(`Done! ${d.credits_transferred} credits transferred.`,'ok'); load();
+}
+
+load();
+</script>
+</body>
+</html>

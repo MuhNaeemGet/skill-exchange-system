@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wallet — SkillSwap</title>
+<link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<nav class="navbar" id="navbar"></nav>
+<div id="toast-wrap"></div>
+
+<div class="wrap page-body">
+  <div class="ph"><div><h1>Credit wallet</h1><p>Earn credits by teaching · Spend them to learn</p></div></div>
+
+  <div class="wallet-hero">
+    <div class="wallet-lbl">Available balance</div>
+    <div class="wallet-amt" id="w-bal">0</div>
+    <div class="wallet-sub">credits · Earn more by teaching sessions</div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:1.5rem">
+    <div class="card" style="text-align:center">
+      <div style="font-size:2rem;margin-bottom:.5rem">📚</div>
+      <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:.3rem">How to earn credits</div>
+      <div style="font-size:13px;color:var(--ink-4);line-height:1.6">Complete sessions as a teacher. Credits are automatically transferred when a session is marked complete.</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:2rem;margin-bottom:.5rem">🎯</div>
+      <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:.3rem">How to spend credits</div>
+      <div style="font-size:13px;color:var(--ink-4);line-height:1.6">Credits are deducted when you complete sessions as a learner. Rate is 1 credit per 10 minutes.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="st">Transaction history</p>
+    <div id="txn-list"></div>
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script>
+requireAuth();
+renderNav('wallet');
+
+async function load() {
+  const d = await api('GET','/api/wallet');
+  if (d.error) { document.getElementById('txn-list').innerHTML = `<div class="alert alert-error">${escHtml(d.error)}</div>`; return; }
+
+  document.getElementById('w-bal').textContent = d.balance ?? 0;
+
+  const txns = d.transactions||[];
+  const el   = document.getElementById('txn-list');
+  if (!txns.length) {
+    el.innerHTML = `<div class="empty" style="padding:2.5rem"><span class="empty-ico">💳</span><p>No transactions yet. Complete a session to see your first transaction.</p></div>`;
+    return;
+  }
+  el.innerHTML = txns.map(t=>{
+    const pos = t.amount > 0;
+    const ico = pos ? '▲' : '▼';
+    const typ = t.type.charAt(0).toUpperCase()+t.type.slice(1);
+    return `
+      <div class="txn-row">
+        <div style="display:flex;align-items:center;gap:.85rem">
+          <div class="txn-icon ${pos?'p':'n'}">${ico}</div>
+          <div class="txn-info">
+            <div class="txn-type">${typ}</div>
+            <div class="txn-date">${fmtDate(t.created_at)}${t.scheduled_at?' · Session: '+fmtDateShort(t.scheduled_at):''}</div>
+          </div>
+        </div>
+        <div class="txn-amt ${pos?'p':'n'}">${pos?'+':''}${t.amount} credits</div>
+      </div>`;
+  }).join('');
+}
+
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Profile — SkillSwap</title>
+<link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<nav class="navbar" id="navbar"></nav>
+<div id="toast-wrap"></div>
+
+<div class="wrap page-body">
+  <div class="ph"><div><h1>My profile</h1><p>Manage your skills, bio, and personal information</p></div></div>
+
+  <div class="grid-2">
+    <!-- LEFT COL -->
+    <div>
+      <div class="profile-hero">
+        <div class="av av-xl" id="p-av">?</div>
+        <div style="flex:1">
+          <h3 id="p-name">—</h3>
+          <p id="p-email" style="color:var(--ink-4);font-size:14px;margin-top:2px">—</p>
+          <p id="p-loc"   style="color:var(--ink-4);font-size:13px;margin-top:4px">—</p>
+          <div id="p-rating" style="margin-top:.6rem"></div>
+          <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
+            <span class="badge badge-brand">💰 <span id="p-cred">0</span> credits</span>
+            <span class="badge badge-teal" id="p-joined"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:1rem">
+        <p class="st">Edit profile</p>
+        <div class="fg"><label>Bio</label><textarea id="e-bio" rows="3" placeholder="Tell others what you're good at and what you're looking to learn…"></textarea></div>
+        <div class="fg"><label>Location</label><input type="text" id="e-loc" placeholder="City, Country"></div>
+        <button class="btn btn-primary btn-sm" onclick="saveProfile()">Save changes</button>
+      </div>
+
+      <div class="card">
+        <p class="st">Reviews received</p>
+        <div id="p-reviews"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT COL -->
+    <div>
+      <div class="card" style="margin-bottom:1rem">
+        <p class="st">Skills I offer</p>
+        <div id="off-skills" style="margin-bottom:1.25rem;min-height:32px"></div>
+        <div class="divider"></div>
+        <p class="st">Skills I want to learn</p>
+        <div id="wnt-skills" style="min-height:32px"></div>
+      </div>
+
+      <div class="card">
+        <p class="st">Add a skill</p>
+        <div class="fg">
+          <label>Skill</label>
+          <select id="sk-sel"></select>
+        </div>
+        <div class="fg-row">
+          <div class="fg">
+            <label>Type</label>
+            <select id="sk-type">
+              <option value="offer">I offer this skill</option>
+              <option value="want">I want to learn this</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Level</label>
+            <select id="sk-lvl">
+              <option>Beginner</option>
+              <option selected>Intermediate</option>
+              <option>Expert</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Credits / hour <span style="color:var(--ink-4);font-weight:400;font-size:12px">(if offering)</span></label>
+          <input type="number" id="sk-cr" value="5" min="1" max="100">
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="addSkill()">Add skill →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script>
+requireAuth();
+renderNav('profile');
+const user = getUser();
+
+async function loadProfile() {
+  const d = await api('GET',`/api/users/${user.user_id}`);
+  if (d.error) { toast(d.error,'err'); return; }
+  const u = d.user;
+
+  document.getElementById('p-av').textContent     = initials(u.username);
+  document.getElementById('p-name').textContent   = u.username;
+  document.getElementById('p-email').textContent  = u.email;
+  document.getElementById('p-loc').textContent    = u.location ? '📍 '+u.location : 'Location not set';
+  document.getElementById('p-cred').textContent   = u.credits;
+  document.getElementById('p-joined').textContent = '📅 Joined '+fmtDateShort(u.created_at);
+  document.getElementById('p-rating').innerHTML   = `<span class="stars">${starStr(u.avg_rating)}</span> <span style="font-size:13px;color:var(--ink-3);font-weight:600">${u.avg_rating?u.avg_rating.toFixed(1):'No rating yet'}</span>`;
+  document.getElementById('e-bio').value          = u.bio||'';
+  document.getElementById('e-loc').value          = u.location||'';
+
+  const skills  = d.skills||[];
+  const offered = skills.filter(s=>s.type==='offer');
+  const wanted  = skills.filter(s=>s.type==='want');
+
+  document.getElementById('off-skills').innerHTML = offered.length
+    ? offered.map(s=>`
+        <span class="badge badge-green skill-tag" style="margin:.2rem">
+          ${escHtml(s.name)}
+          <span style="opacity:.65;font-size:10px">${s.level}</span>
+          <span style="opacity:.6;font-size:10px">${s.hourly_credits}cr/hr</span>
+          <button class="rm" onclick="removeSkill(${s.id})" title="Remove">✕</button>
+        </span>`).join('')
+    : '<p style="font-size:13px;color:var(--ink-4)">No skills added yet.</p>';
+
+  document.getElementById('wnt-skills').innerHTML = wanted.length
+    ? wanted.map(s=>`
+        <span class="badge badge-brand skill-tag" style="margin:.2rem">
+          ${escHtml(s.name)}
+          <button class="rm" onclick="removeSkill(${s.id})" title="Remove">✕</button>
+        </span>`).join('')
+    : '<p style="font-size:13px;color:var(--ink-4)">No skills added yet.</p>';
+
+  const reviews = d.reviews||[];
+  document.getElementById('p-reviews').innerHTML = reviews.length
+    ? reviews.map(r=>`
+        <div class="card-inset" style="margin-bottom:.6rem">
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem">
+            <div class="av av-sm">${initials(r.reviewer_name)}</div>
+            <strong style="font-size:13px">${escHtml(r.reviewer_name)}</strong>
+            <span class="stars" style="font-size:12px">${starStr(r.rating)}</span>
+            <span style="font-size:11px;color:var(--ink-4);margin-left:auto">${fmtDateShort(r.created_at)}</span>
+          </div>
+          <p style="font-size:13px;color:var(--ink-3)">${escHtml(r.comment||'No comment left.')}</p>
+        </div>`).join('')
+    : '<p style="font-size:13px;color:var(--ink-4)">No reviews yet. Complete a session to get your first review!</p>';
+}
+
+async function loadSkillsDropdown() {
+  const d = await api('GET','/api/skills');
+  document.getElementById('sk-sel').innerHTML = (d.skills||[]).map(s=>`<option value="${s.skill_id}">${escHtml(s.name)} — ${s.category}</option>`).join('');
+}
+
+async function saveProfile() {
+  const d = await api('PUT',`/api/users/${user.user_id}`,{
+    bio:      document.getElementById('e-bio').value,
+    location: document.getElementById('e-loc').value
+  });
+  if (d.error) { toast(d.error,'err'); return; }
+  toast('Profile updated! ✓','ok'); loadProfile();
+}
+
+async function addSkill() {
+  const sid = parseInt(document.getElementById('sk-sel').value);
+  const typ = document.getElementById('sk-type').value;
+  const lvl = document.getElementById('sk-lvl').value;
+  const cr  = parseInt(document.getElementById('sk-cr').value)||5;
+  if (!sid) { toast('Please select a skill','err'); return; }
+  const d = await api('POST','/api/user-skills',{skill_id:sid,type:typ,level:lvl,hourly_credits:cr});
+  if (d.error) { toast(d.error,'err'); return; }
+  toast('Skill added! ✓','ok'); loadProfile();
+}
+
+async function removeSkill(id) {
+  const d = await api('DELETE',`/api/user-skills/${id}`);
+  if (d.error) { toast(d.error,'err'); return; }
+  toast('Skill removed','ok'); loadProfile();
+}
+
+loadProfile();
+loadSkillsDropdown();
+</script>
+</body>
+</html>
