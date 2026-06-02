@@ -1,0 +1,101 @@
+id,student_id,teacher_id,skill,message,scheduled_at,duration,status,created_at
+1,59,46,Data Science,Looking for project guidance.,2025-03-17 16:30,120,cancelled,2024-12-21 00:00:00
+2,35,21,Machine Learning,,2025-02-22 12:45,60,cancelled,2025-01-24 00:00:00
+3,49,22,Python Programming,Looking for project guidance.,2025-04-24 10:45,60,completed,2024-11-06 00:00:00
+4,44,18,Cloud Computing,Need help debugging my code.,2025-04-11 16:00,60,pending,2024-11-01 00:00:00
+5,53,32,Mobile Development,,2025-04-02 15:45,120,pending,2024-09-24 00:00:00
+6,38,15,Database Design,Need help debugging my code.,2025-04-03 12:30,120,completed,2024-12-18 00:00:00
+7,71,22,JavaScript,Need help debugging my code.,2025-05-27 12:30,90,confirmed,2024-10-01 00:00:00
+8,25,21,Web Development,Need help debugging my code.,2025-06-17 10:15,60,cancelled,2024-11-10 00:00:00
+9,68,39,UI/UX Design,I need help with basics.,2025-03-21 12:15,90,confirmed,2024-11-17 00:00:00
+10,2,46,Mobile Development,Can we focus on practical examples?,2025-04-11 08:00,90,confirmed,2025-02-11 00:00:00
+11,63,7,Python Programming,Want to improve my portfolio.,2025-04-13 15:45,120,completed,2024-10-18 00:00:00
+12,7,17,Cybersecurity,I need help with basics.,2025-02-16 14:45,30,pending,2024-10-09 00:00:00
+13,20,37,UI/UX Design,I need help with basics.,2025-04-04 09:45,60,cancelled,2024-12-25 00:00:00
+14,57,20,Cloud Computing,Looking for project guidance.,2025-04-19 17:00,30,confirmed,2025-02-08 00:00:00
+15,28,17,Web Development,Can we focus on practical examples?,2025-04-02 10:00,60,pending,2024-12-14 00:00:00
+16,58,45,Cloud Computing,Looking for project guidance.,2025-04-15 08:15,90,completed,2025-02-27 00:00:00
+17,59,5,Machine Learning,I have an upcoming exam.,2025-06-30 18:15,120,pending,2025-01-18 00:00:00
+18,29,42,Data Science,I have an upcoming exam.,2025-03-08 09:00,60,completed,2025-01-31 00:00:00
+19,73,19,Cybersecurity,I need help with basics.,2025-05-30 12:45,90,cancelled,2024-12-22 00:00:00
+20,11,39,Python Programming,Looking for project guidance.,2025-04-23 17:30,30,pending,2024-10-29 00:00:00
+21,74,38,Python Programming,,2025-04-09 17:00,60,cancelled,2025-01-11 00:00:00
+22,57,18,Data Science,Want to improve my portfolio.,2025-05-22 18:45,30,cancelled,2024-11-29 00:00:00
+23,53,22,JavaScript,Need help debugging my code.,2025-02-26 10:30,120,cancelled,2024-11-13 00:00:00
+24,52,49,Mobile Development,I need help with basics.,2025-05-27 09:30,90,completed,2024-09-30 00:00:00
+25,52,33,Python Programming,Need help debugging my code.,2025-06-18 15:45,30,confirmed,2025-01-11 00:00:00
+26,47,40,Cybersecurity,Need help debugging my code.,2025-05-24 08:15,90,confirmed,2024-11-13 00:00:00
+27,57,45,Cybersecurity,I need help with basics.,2025-02-07 18:15,60,completed,2025-01-20 00:00:00
+28,2,36,Database Design,I need help with basics.,2025-03-29 09:45,30,confirmed,2025-01-06 00:00:00
+29,38,33,UI/UX Design,Looking for project guidance.,2025-06-03 15:15,120,confirmed,2024-12-08 00:00:00
+30,25,39,Mobile Development,Need help debugging my code.,2025-03-06 09:30,120,completed,2025-01-08 00:00:00
+31,35,1,UI/UX Design,Need help debugging my code.,2025-04-17 17:45,60,cancelled,2025-01-16 00:00:00
+32,62,23,JavaScript,Want to improve my portfolio.,2025-06-19 14:45,90,confirmed,2025-02-26 00:00:00
+33,31,37,Database Design,Can we focus on practical examples?,2025-05-16 08:30,120,cancelled,2024-12-08 00:00:00
+34,20,32,Python Programming,Can we focus on practical examples?,2025-06-08 17:30,30,cancelled,2024-09-26 00:00:00
+35,68,30,Python Programming,Need help debugging my code.,2025-03-08 14:15,30,cancelled,2025-03-20 00:00:00
+36,34,22,Cloud Computing,Need help debugging my code.,2025-05-12 18:00,90,cancelled,2024-11-21 00:00:00
+37,63,35,Python Programming,Want to improve my portfolio.,2025-02-17 11:30,60,pending,2024-12-21 00:00:00
+38,13,49,Web Development,Looking for project guidance.,2025-03-14 12:00,30,completed,2024-09-15 00:00:00
+39,38,23,JavaScript,Looking for project guidance.,2025-03-09 11:45,60,confirmed,2024-10-15 00:00:00
+40,11,40,Database Design,Want to improve my portfolio.,2025-04-02 15:15,60,cancelled,2025-02-11 00:00:00
+41,33,30,UI/UX Design,Need help debugging my code.,2025-02-02 15:30,60,pending,2024-12-23 00:00:00
+42,45,38,UI/UX Design,Need help debugging my code.,2025-05-19 12:45,90,confirmed,2024-12-08 00:00:00
+43,62,7,Machine Learning,Looking for project guidance.,2025-06-26 13:30,90,pending,2025-02-16 00:00:00
+44,51,18,Python Programming,Want to improve my portfolio.,2025-02-12 17:45,90,confirmed,2025-02-03 00:00:00
+45,46,15,Machine Learning,Want to improve my portfolio.,2025-04-05 18:15,30,pending,2024-11-19 00:00:00
+46,57,3,Cloud Computing,I have an upcoming exam.,2025-03-05 09:30,90,cancelled,2024-10-15 00:00:00
+47,26,9,Mobile Development,I have an upcoming exam.,2025-06-15 16:30,60,completed,2025-01-02 00:00:00
+48,38,48,JavaScript,,2025-03-01 15:00,60,confirmed,2025-02-21 00:00:00
+49,51,36,JavaScript,I need help with basics.,2025-05-12 08:30,30,cancelled,2024-12-04 00:00:00
+50,34,38,Database Design,,2025-05-06 09:15,120,pending,2025-02-06 00:00:00
+51,72,21,Cloud Computing,Can we focus on practical examples?,2025-02-16 18:45,90,cancelled,2024-09-30 00:00:00
+52,18,3,Python Programming,I have an upcoming exam.,2025-06-06 09:00,60,confirmed,2024-12-09 00:00:00
+53,59,24,Mobile Development,Looking for project guidance.,2025-06-30 10:45,30,cancelled,2025-02-05 00:00:00
+54,53,18,Python Programming,Need help debugging my code.,2025-05-05 11:45,120,confirmed,2024-12-02 00:00:00
+55,13,44,JavaScript,Want to improve my portfolio.,2025-05-02 08:45,90,confirmed,2024-10-02 00:00:00
+56,59,6,Machine Learning,Need help debugging my code.,2025-02-05 08:30,60,confirmed,2025-01-23 00:00:00
+57,27,5,Mobile Development,Can we focus on practical examples?,2025-06-30 11:15,90,confirmed,2025-01-31 00:00:00
+58,1,18,Data Science,Can we focus on practical examples?,2025-06-18 12:15,30,pending,2024-10-04 00:00:00
+59,2,23,Machine Learning,Want to improve my portfolio.,2025-04-23 08:15,90,pending,2024-10-03 00:00:00
+60,54,34,Web Development,Need help debugging my code.,2025-02-16 15:45,90,pending,2024-12-25 00:00:00
+61,65,15,Cloud Computing,I need help with basics.,2025-06-13 12:45,30,pending,2025-01-01 00:00:00
+62,52,28,Web Development,Looking for project guidance.,2025-05-24 09:00,90,confirmed,2024-09-17 00:00:00
+63,17,18,Cloud Computing,Need help debugging my code.,2025-06-29 16:30,120,completed,2024-12-26 00:00:00
+64,65,39,Database Design,I need help with basics.,2025-03-01 18:15,120,cancelled,2024-10-29 00:00:00
+65,53,22,Cybersecurity,Looking for project guidance.,2025-05-17 09:30,120,completed,2025-02-18 00:00:00
+66,33,24,Data Science,Need help debugging my code.,2025-06-01 09:00,30,pending,2024-12-20 00:00:00
+67,13,48,JavaScript,,2025-03-05 16:00,90,pending,2024-12-15 00:00:00
+68,46,43,Database Design,,2025-02-13 12:30,90,pending,2025-01-26 00:00:00
+69,65,14,Data Science,Need help debugging my code.,2025-06-03 11:00,90,completed,2024-09-30 00:00:00
+70,36,37,Machine Learning,,2025-05-20 16:00,90,pending,2024-10-17 00:00:00
+71,35,45,UI/UX Design,I have an upcoming exam.,2025-04-30 08:15,60,cancelled,2024-09-18 00:00:00
+72,19,48,Python Programming,I need help with basics.,2025-06-15 11:45,120,cancelled,2024-11-27 00:00:00
+73,21,24,UI/UX Design,Need help debugging my code.,2025-04-24 17:00,30,confirmed,2024-10-11 00:00:00
+74,7,44,Web Development,I have an upcoming exam.,2025-05-24 18:45,120,cancelled,2024-12-16 00:00:00
+75,35,14,Mobile Development,I need help with basics.,2025-04-29 14:00,90,cancelled,2025-01-13 00:00:00
+76,40,3,Machine Learning,Looking for project guidance.,2025-02-14 08:15,90,confirmed,2025-03-16 00:00:00
+77,18,49,UI/UX Design,I have an upcoming exam.,2025-04-24 09:00,120,cancelled,2024-10-15 00:00:00
+78,17,25,Mobile Development,Need help debugging my code.,2025-03-30 16:30,30,cancelled,2025-03-09 00:00:00
+79,6,28,Python Programming,Looking for project guidance.,2025-02-19 13:45,120,cancelled,2024-11-14 00:00:00
+80,15,26,Python Programming,I have an upcoming exam.,2025-03-15 17:45,90,pending,2024-12-21 00:00:00
+81,14,16,Database Design,Want to improve my portfolio.,2025-05-13 16:00,120,completed,2025-03-10 00:00:00
+82,44,15,JavaScript,,2025-03-15 09:00,60,completed,2024-11-29 00:00:00
+83,19,16,Web Development,Can we focus on practical examples?,2025-04-06 11:15,60,pending,2024-10-16 00:00:00
+84,64,30,Cloud Computing,,2025-06-28 15:30,90,confirmed,2024-12-22 00:00:00
+85,9,31,Cybersecurity,Need help debugging my code.,2025-04-18 12:00,90,pending,2024-11-19 00:00:00
+86,60,29,Python Programming,I need help with basics.,2025-05-05 12:00,30,cancelled,2024-12-28 00:00:00
+87,75,36,Python Programming,Looking for project guidance.,2025-06-26 18:15,90,cancelled,2025-01-07 00:00:00
+88,20,4,Cybersecurity,I need help with basics.,2025-04-28 09:15,30,confirmed,2025-03-01 00:00:00
+89,57,29,Mobile Development,Want to improve my portfolio.,2025-03-12 13:30,90,cancelled,2024-12-14 00:00:00
+90,44,44,Cloud Computing,I need help with basics.,2025-04-26 09:30,30,cancelled,2024-11-12 00:00:00
+91,33,47,Cloud Computing,,2025-03-10 13:00,60,completed,2024-11-19 00:00:00
+92,51,9,Cloud Computing,Need help debugging my code.,2025-02-21 12:45,90,confirmed,2025-02-19 00:00:00
+93,68,6,Database Design,Want to improve my portfolio.,2025-05-03 08:30,90,confirmed,2024-10-25 00:00:00
+94,44,50,Cybersecurity,Can we focus on practical examples?,2025-03-29 10:15,30,completed,2024-09-26 00:00:00
+95,65,50,Mobile Development,,2025-06-14 08:30,60,cancelled,2024-10-10 00:00:00
+96,21,12,Cloud Computing,,2025-03-14 15:00,120,completed,2025-02-21 00:00:00
+97,31,29,Cloud Computing,I have an upcoming exam.,2025-05-25 11:15,90,cancelled,2024-10-20 00:00:00
+98,48,44,Cloud Computing,Looking for project guidance.,2025-05-29 12:45,120,confirmed,2024-10-22 00:00:00
+99,18,17,Python Programming,Need help debugging my code.,2025-06-03 13:00,30,completed,2024-09-22 00:00:00
+100,21,18,Cybersecurity,Want to improve my portfolio.,2025-03-09 14:00,60,cancelled,2024-11-29 00:00:00

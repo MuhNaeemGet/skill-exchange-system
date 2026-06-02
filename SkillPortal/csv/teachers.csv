@@ -1,0 +1,51 @@
+id,full_name,email,password,bio,experience,hourly_rate,profile_pic,created_at
+1,Omar Khan,tomarkhan1@example.com,teacher123,Dedicated to making complex topics simple and practical.,2,21.45,default.png,2024-09-09 00:00:00
+2,Vicky Malik,tvickymalik2@example.com,teacher123,PhD candidate with strong foundations in theory and practice.,8,23.92,default.png,2025-01-03 00:00:00
+3,Nadia Zaidi,tnadiazaidi3@example.com,teacher123,Expert practitioner who loves teaching and mentoring.,19,38.81,default.png,2024-11-02 00:00:00
+4,Ehan Pirzada,tehanpirzada4@example.com,teacher123,Researcher and developer bridging academia and industry.,4,14.85,default.png,2024-12-20 00:00:00
+5,Waqas Rajput,twaqasrajput5@example.com,teacher123,Published author and workshop facilitator.,15,53.19,default.png,2024-09-14 00:00:00
+6,Ruba Siddiqui,trubasiddiqui6@example.com,teacher123,Passionate educator with years of industry experience.,13,46.41,default.png,2024-09-28 00:00:00
+7,Pari Abbasi,tpariabbasi7@example.com,teacher123,Researcher and developer bridging academia and industry.,18,32.43,default.png,2024-12-18 00:00:00
+8,Layla Gillani,tlaylagillani8@example.com,teacher123,Startup founder sharing real-world technical skills.,8,53.72,default.png,2024-09-20 00:00:00
+9,Cyrus Siddiqui,tcyrussiddiqui9@example.com,teacher123,Passionate educator with years of industry experience.,18,51.8,default.png,2024-09-24 00:00:00
+10,Waheed Dogar,twaheeddogar10@example.com,teacher123,Expert practitioner who loves teaching and mentoring.,14,34.28,default.png,2024-10-25 00:00:00
+11,Zara Hassan,tzarahassan11@example.com,teacher123,Expert practitioner who loves teaching and mentoring.,13,10.11,default.png,2024-12-09 00:00:00
+12,Qasim Tariq,tqasimtariq12@example.com,teacher123,Certified professional with a hands-on teaching style.,14,44.83,default.png,2025-03-07 00:00:00
+13,Javeria Virk,tjaveriavirk13@example.com,teacher123,Expert practitioner who loves teaching and mentoring.,7,24.84,default.png,2024-09-15 00:00:00
+14,Lubna Zaidi,tlubnazaidi14@example.com,teacher123,Passionate educator with years of industry experience.,11,12.86,default.png,2025-01-28 00:00:00
+15,Ehan Warsi,tehanwarsi15@example.com,teacher123,PhD candidate with strong foundations in theory and practice.,6,12.84,default.png,2025-01-09 00:00:00
+16,Faraz Qureshi,tfarazqureshi16@example.com,teacher123,Dedicated to making complex topics simple and practical.,20,13.4,default.png,2024-10-31 00:00:00
+17,Zara Shah,tzarashah17@example.com,teacher123,Award-winning instructor known for clear explanations.,8,38.95,default.png,2024-09-11 00:00:00
+18,Noor Raza,tnoorraza18@example.com,teacher123,Published author and workshop facilitator.,19,38.26,default.png,2024-11-20 00:00:00
+19,Qasim Baig,tqasimbaig19@example.com,teacher123,Former software engineer now focused on education.,8,23.28,default.png,2024-10-04 00:00:00
+20,Qadir Iqbal,tqadiriqbal20@example.com,teacher123,Startup founder sharing real-world technical skills.,11,56.45,default.png,2024-09-19 00:00:00
+21,Ahmed Tariq,tahmedtariq21@example.com,teacher123,Award-winning instructor known for clear explanations.,19,59.8,default.png,2024-09-19 00:00:00
+22,Imran Baig,timranbaig22@example.com,teacher123,PhD candidate with strong foundations in theory and practice.,9,16.62,default.png,2024-11-29 00:00:00
+23,Emma Dogar,temmadogar23@example.com,teacher123,Former software engineer now focused on education.,10,17.89,default.png,2025-01-18 00:00:00
+24,Tooba Iqbal,ttoobaiqbal24@example.com,teacher123,Award-winning instructor known for clear explanations.,17,10.39,default.png,2025-01-20 00:00:00
+25,Tariq Siddiqui,ttariqsiddiqui25@example.com,teacher123,Expert practitioner who loves teaching and mentoring.,9,15.77,default.png,2024-09-28 00:00:00
+26,Vanessa Chaudhry,tvanessachaudhry26@example.com,teacher123,Certified professional with a hands-on teaching style.,10,40.24,default.png,2025-03-03 00:00:00
+27,Vicky Baig,tvickybaig27@example.com,teacher123,Certified professional with a hands-on teaching style.,17,34.43,default.png,2024-09-14 00:00:00
+28,Faraz Rajput,tfarazrajput28@example.com,teacher123,Certified professional with a hands-on teaching style.,2,10.18,default.png,2025-03-17 00:00:00
+29,Isha Farooqi,tishafarooqi29@example.com,teacher123,Expert practitioner who loves teaching and mentoring.,15,37.58,default.png,2024-12-19 00:00:00
+30,Javeria Khan,tjaveriakhan30@example.com,teacher123,Dedicated to making complex topics simple and practical.,3,57.25,default.png,2025-02-24 00:00:00
+31,Junaid Zaidi,tjunaidzaidi31@example.com,teacher123,Passionate educator with years of industry experience.,12,39.13,default.png,2024-10-08 00:00:00
+32,Babar Butt,tbabarbutt32@example.com,teacher123,Passionate educator with years of industry experience.,10,28.23,default.png,2024-09-11 00:00:00
+33,Waqas Baig,twaqasbaig33@example.com,teacher123,Researcher and developer bridging academia and industry.,4,27.68,default.png,2025-01-22 00:00:00
+34,Amina Chaudhry,taminachaudhry34@example.com,teacher123,Researcher and developer bridging academia and industry.,6,58.81,default.png,2024-10-16 00:00:00
+35,Amina Ahmed,taminaahmed35@example.com,teacher123,Expert practitioner who loves teaching and mentoring.,11,49.12,default.png,2024-12-15 00:00:00
+36,Qadir Dogar,tqadirdogar36@example.com,teacher123,Certified professional with a hands-on teaching style.,6,49.37,default.png,2024-09-28 00:00:00
+37,Yusuf Ali,tyusufali37@example.com,teacher123,Startup founder sharing real-world technical skills.,8,19.98,default.png,2024-12-27 00:00:00
+38,Waqas Iqbal,twaqasiqbal38@example.com,teacher123,Researcher and developer bridging academia and industry.,8,11.18,default.png,2024-10-20 00:00:00
+39,Zara Khattak,tzarakhattak39@example.com,teacher123,Certified professional with a hands-on teaching style.,3,58.34,default.png,2024-11-11 00:00:00
+40,Waqas Warsi,twaqaswarsi40@example.com,teacher123,Published author and workshop facilitator.,18,26.56,default.png,2024-09-08 00:00:00
+41,Hassan Farooqi,thassanfarooqi41@example.com,teacher123,Expert practitioner who loves teaching and mentoring.,19,58.13,default.png,2024-11-07 00:00:00
+42,Chloe Siddiqui,tchloesiddiqui42@example.com,teacher123,Award-winning instructor known for clear explanations.,14,27.28,default.png,2024-11-20 00:00:00
+43,Babar Warsi,tbabarwarsi43@example.com,teacher123,Dedicated to making complex topics simple and practical.,13,54.98,default.png,2024-10-19 00:00:00
+44,Qasim Ali,tqasimali44@example.com,teacher123,Published author and workshop facilitator.,1,36.0,default.png,2025-01-16 00:00:00
+45,Ruba Abbasi,trubaabbasi45@example.com,teacher123,Former software engineer now focused on education.,14,13.5,default.png,2025-02-18 00:00:00
+46,Vicky Javed,tvickyjaved46@example.com,teacher123,Dedicated to making complex topics simple and practical.,10,35.36,default.png,2025-02-18 00:00:00
+47,Amina Javed,taminajaved47@example.com,teacher123,Published author and workshop facilitator.,10,37.72,default.png,2024-10-20 00:00:00
+48,Amina Niazi,taminaniazi48@example.com,teacher123,Expert practitioner who loves teaching and mentoring.,20,38.46,default.png,2024-12-13 00:00:00
+49,Javeria Khan,tjaveriakhan49@example.com,teacher123,Certified professional with a hands-on teaching style.,10,20.51,default.png,2025-01-27 00:00:00
+50,Maaz Javed,tmaazjaved50@example.com,teacher123,Startup founder sharing real-world technical skills.,15,32.11,default.png,2024-10-25 00:00:00
